@@ -1,120 +1,137 @@
-export interface Location {
-    name: string;
-    local_names?: { [key: string]: string };
-    lat: number;
-    lon: number;
-    country: string;
-    state?: string;
-}
-
-export interface Coordinates {
-    latitude: Location['lat'],
-    longitude: Location['lon'],
-}
-
-export interface Weather {
-    lat: number;
-    lon: number;
-    timezone: string;
-    timezone_offset: number;
+export interface Wheater {
+    location: Location;
     current: CurrentWeather;
-    minutely: MinutelyWeather[];
-    hourly: HourlyWeather[];
-    daily: DailyWeather[];
-    alerts?: WeatherAlert[];
+    forecast: Forecast;
+}
+
+interface Location {
+    name: string;
+    region: string;
+    country: string;
+    lat: number;
+    lon: number;
+    tz_id: string;
+    localtime_epoch: number;
+    localtime: string;
 }
 
 interface CurrentWeather {
-    dt: number;
-    sunrise: number;
-    sunset: number;
-    temp: number;
-    feels_like: number;
-    pressure: number;
+    last_updated_epoch: number;
+    last_updated: string;
+    temp_c: number;
+    temp_f: number;
+    is_day: number;
+    condition: WeatherCondition;
+    wind_mph: number;
+    wind_kph: number;
+    wind_degree: number;
+    wind_dir: string;
+    pressure_mb: number;
+    pressure_in: number;
+    precip_mm: number;
+    precip_in: number;
     humidity: number;
-    dew_point: number;
-    uvi: number;
-    clouds: number;
-    visibility: number;
-    wind_speed: number;
-    wind_deg: number;
-    wind_gust?: number;
-    weather: WeatherDescription[];
+    cloud: number;
+    feelslike_c: number;
+    feelslike_f: number;
+    windchill_c: number;
+    windchill_f: number;
+    heatindex_c: number;
+    heatindex_f: number;
+    dewpoint_c: number;
+    dewpoint_f: number;
+    vis_km: number;
+    vis_miles: number;
+    uv: number;
+    gust_mph: number;
+    gust_kph: number;
 }
 
-interface MinutelyWeather {
-    dt: number;
-    precipitation: number;
+interface WeatherCondition {
+    text: string;
+    icon: string;
+    code: number;
+}
+
+interface Forecast {
+    forecastday: ForecastDay[];
+}
+
+interface ForecastDay {
+    date: string;
+    date_epoch: number;
+    day: DayWeather;
+    astro: Astro;
+    hour: HourlyWeather[];
+}
+
+interface DayWeather {
+    maxtemp_c: number;
+    maxtemp_f: number;
+    mintemp_c: number;
+    mintemp_f: number;
+    avgtemp_c: number;
+    avgtemp_f: number;
+    maxwind_mph: number;
+    maxwind_kph: number;
+    totalprecip_mm: number;
+    totalprecip_in: number;
+    totalsnow_cm: number;
+    avgvis_km: number;
+    avgvis_miles: number;
+    avghumidity: number;
+    daily_will_it_rain: number;
+    daily_chance_of_rain: number;
+    daily_will_it_snow: number;
+    daily_chance_of_snow: number;
+    condition: WeatherCondition;
+    uv: number;
+}
+
+interface Astro {
+    sunrise: string;
+    sunset: string;
+    moonrise: string;
+    moonset: string;
+    moon_phase: string;
+    moon_illumination: number;
+    is_moon_up: number;
+    is_sun_up: number;
 }
 
 interface HourlyWeather {
-    dt: number;
-    temp: number;
-    feels_like: number;
-    pressure: number;
+    time_epoch: number;
+    time: string;
+    temp_c: number;
+    temp_f: number;
+    is_day: number;
+    condition: WeatherCondition;
+    wind_mph: number;
+    wind_kph: number;
+    wind_degree: number;
+    wind_dir: string;
+    pressure_mb: number;
+    pressure_in: number;
+    precip_mm: number;
+    precip_in: number;
+    snow_cm: number;
     humidity: number;
-    dew_point: number;
-    uvi: number;
-    clouds: number;
-    visibility: number;
-    wind_speed: number;
-    wind_deg: number;
-    wind_gust?: number;
-    weather: WeatherDescription[];
-    pop: number;
-}
-
-interface DailyWeather {
-    dt: number;
-    sunrise: number;
-    sunset: number;
-    moonrise: number;
-    moonset: number;
-    moon_phase: number;
-    summary: string;
-    temp: DailyTemperature;
-    feels_like: DailyFeelsLike;
-    pressure: number;
-    humidity: number;
-    dew_point: number;
-    wind_speed: number;
-    wind_deg: number;
-    wind_gust?: number;
-    weather: WeatherDescription[];
-    clouds: number;
-    pop: number;
-    rain?: number;
-    uvi: number;
-}
-
-interface DailyTemperature {
-    day: number;
-    min: number;
-    max: number;
-    night: number;
-    eve: number;
-    morn: number;
-}
-
-interface DailyFeelsLike {
-    day: number;
-    night: number;
-    eve: number;
-    morn: number;
-}
-
-interface WeatherDescription {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-}
-
-interface WeatherAlert {
-    sender_name: string;
-    event: string;
-    start: number;
-    end: number;
-    description: string;
-    tags: string[];
+    cloud: number;
+    feelslike_c: number;
+    feelslike_f: number;
+    windchill_c: number;
+    windchill_f: number;
+    heatindex_c: number;
+    heatindex_f: number;
+    dewpoint_c: number;
+    dewpoint_f: number;
+    will_it_rain: number;
+    chance_of_rain: number;
+    will_it_snow: number;
+    chance_of_snow: number;
+    vis_km: number;
+    vis_miles: number;
+    gust_mph: number;
+    gust_kph: number;
+    uv: number;
 }
