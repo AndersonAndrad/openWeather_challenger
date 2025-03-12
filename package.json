@@ -7,6 +7,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "jest --passWithNoTests --runInBand --detectOpenHandles --forceExit",
+    "test:coverage": "jest --coverage",
     "lint": "eslint src --fix",
     "commit": "cz"
   },

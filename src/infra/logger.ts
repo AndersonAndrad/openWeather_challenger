@@ -1,10 +1,10 @@
-import { getCurrentTime } from "../core/utils/hours.utils.js";
+import {getCurrentTime} from "../core/utils/hours.utils.ts";
 
 import chalk from 'chalk';
 
 export class Logger {
     private readonly className: string;
-    private chalk: any;
+    private chalk;
 
     constructor(className: string) {
         this.className = className;

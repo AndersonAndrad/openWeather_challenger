@@ -26,7 +26,7 @@ export class WeatherService {
         try {
             this.logger.debug(`Searching for city ${cityName}`);
 
-            const response = await axios.get(url, {
+            const response = await axios.get<Wheater>(url, {
                 params: {q: cityName, key: this.WEATHER_API_KEY, days: 1},
             });
 
