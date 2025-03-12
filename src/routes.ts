@@ -1,5 +1,5 @@
 import express, {json, Router} from "express";
-import { Logger } from "./infra/logger.js";
+import { Logger } from "./infra/logger.ts";
 
 export class Routes {
     private readonly router: Router;

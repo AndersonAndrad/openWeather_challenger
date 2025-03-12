@@ -1,11 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { Routes } from "./routes.js";
-import { Logger } from "./infra/logger.js";
+import { Routes } from "./routes.ts";
+import { Logger } from "./infra/logger.ts";
 
 dotenv.config();
 
-class Server {
+export class Server {
     private readonly expressInstance: express.Application;
 
     private readonly routes: Routes;
