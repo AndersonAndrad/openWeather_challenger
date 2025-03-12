@@ -1,16 +1,24 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-import swaggerJSDoc from "swagger-jsdoc";
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const swaggerOptions: swaggerJSDoc.Options = {
+const swaggerOptions = {
     definition: {
-        openapi: '3.0.0',
-        info: { title: 'Open Weather API', version: '1.0.0' }
+        openapi: "3.0.0",
+        info: {
+            title: "Weather API",
+            version: "1.0.0",
+            description: "API documentation for the Weather service",
+        },
+        servers: [
+            {
+                url: "http://localhost:3000/api/v1",
+                description: "Local server",
+            },
+        ],
     },
-    apis: [path.resolve(__dirname, '../../src/routes.ts')] // Fix the path here
+    apis: ["src/routes.ts"],
 };
 
-export const swaggerDocs = swaggerJSDoc(swaggerOptions);
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+
+export {swaggerDocs, swaggerUi};

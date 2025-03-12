@@ -3,6 +3,7 @@ import {Logger} from "./infra/logger.ts";
 import cors from 'cors';
 import {NextHandleFunction} from "connect";
 import {WeatherService} from "./app/weather/weather.service.ts";
+import {swaggerDocs, swaggerUi} from "./infra/swagger/swagger.config.js";
 
 export class Routes {
     private readonly router: Router;
@@ -22,12 +23,35 @@ export class Routes {
 
         const weatherService = new WeatherService();
 
-        // @todo configure swagger documents
-        // this.router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+        this.router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
         this.router.get('/', (_, response) => {
             response.status(200).send(`Application is running...`);
         });
 
+        /**
+         * @swagger
+         * /weather:
+         *   get:
+         *     summary: Retrieve weather data for a city
+         *     description: Fetches weather information based on a given city.
+         *     parameters:
+         *       - in: query
+         *         name: city
+         *         required: true
+         *         schema:
+         *           type: string
+         *         description: Name of the city
+         *     responses:
+         *       200:
+         *         description: Weather data returned successfully
+         *         content:
+         *           application/json:
+         *             schema:
+         *               type: object
+         *       404:
+         *         description: City not found
+         */
         this.router.get('/weather', async (req, res) => {
             try {
                 const cityWeather = await weatherService.retrieveCity(String(req?.query?.city));
