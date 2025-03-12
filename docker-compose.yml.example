@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  app:
+    container_name: weather_challenger
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /app/node_modules
+      - ./src:/app/src
+    ports:
+      - "3000:3000"
+    environment:
+      - APP_PORT=3000
+      - WEATHER_API_KEY=
+      - WEATHER_URL=https://api.weatherapi.com/v1
+    command:
+      - npm
+      - run
+      - dev
