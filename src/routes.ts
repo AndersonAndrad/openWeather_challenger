@@ -34,7 +34,7 @@ export class Routes {
 
                 res.status(200).json(cityWeather);
             } catch (error) {
-                res.status(404).json({error: error.response?.data?.message || 'City not found'});
+                res.status(404).json({error: error?.message || 'City not found'});
             }
         });
     }
