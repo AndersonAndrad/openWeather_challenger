@@ -1,5 +1,9 @@
 import express, {json, Router} from "express";
 import { Logger } from "./infra/logger.ts";
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+import {swaggerDocs} from "./infra/swagger/swagger.config.js";
+import cors from 'cors';
 
 export class Routes {
     private readonly router: Router;
@@ -15,6 +19,10 @@ export class Routes {
 
     initializeRoutes(): void {
         this.router.use(this.json);
+        this.router.use(cors())
+
+        // @todo configure swagger documents
+        // this.router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
         this.router.use('/', (_, response ) => {
             response.status(200).send(`Application is running...`);
