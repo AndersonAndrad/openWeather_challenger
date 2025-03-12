@@ -25,7 +25,7 @@ class Server {
     initializeServer(): void {
         const PORT: string = process.env.APP_PORT || '3000';
         this.expressInstance.listen(PORT, () => {
-           this.logger.info(`Server listening on port ${PORT}`);
+            this.logger.info(`Server listening on ${PORT}`);
         });
     }
 

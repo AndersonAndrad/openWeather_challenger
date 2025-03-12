@@ -18,11 +18,11 @@ export class Routes {
 
         this.router.use('/', (_, response ) => {
             response.status(200).send(`Application is running...`);
-        })
-
+        });
     }
 
     attachAppRoutes(app: express.Application){
         app.use('/api/v1', this.router);
+        this.logger.debug("Routes initialized");
     }
 }

@@ -15,30 +15,30 @@ export class Logger {
     }
 
     success(message: string): void {
-        console.log(this.chalk?.green(this.prepareMessage(message)));
+        console.log(chalk.green(this.prepareMessage(message, 'SUCCESS')));
     }
 
     error(message: string): void {
-        console.log(this.chalk?.bold.red(this.prepareMessage(message)));
+        console.log(chalk.bold.red(this.prepareMessage(message, 'ERROR')));
     }
 
     warning(message: string): void {
-        console.log(this.chalk?.yellow(this.prepareMessage(message)));
+        console.log(chalk.yellow(this.prepareMessage(message, 'WARNING')));
     }
 
     info(message: string): void {
-        console.log(this.chalk?.italic.blue(this.prepareMessage(message)));
+        console.log(chalk.bold.blue(this.prepareMessage(message, 'INFO')));
     }
 
     verbose(message: string): void {
-        console.log(this.chalk?.white(this.prepareMessage(message)));
+        console.log(chalk.white(this.prepareMessage(message, 'VERBOSE')));
     }
 
     debug(message: string): void {
-        console.log(this.chalk?.cyan.red(this.prepareMessage(message)));
+        console.log(chalk.cyan(this.prepareMessage(message, 'DEBUG')));
     }
 
-    private prepareMessage(message: string): string {
-        return `[express] ${new Date().toDateString()}, ${getCurrentTime()} [${this.className}] ${message}`;
+    private prepareMessage(message: string, typeError: string): string {
+        return `[${typeError}] - [express] ${new Date().toDateString()}, ${getCurrentTime()} [${this.className}] ${message}`;
     }
 }
