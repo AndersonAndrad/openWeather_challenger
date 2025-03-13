@@ -2,6 +2,7 @@
   "name": "open_weather_challenger",
   "version": "1.0.0",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "dev": "nodemon --inspect --trace-warnings",
     "build": "tsc",
@@ -12,7 +13,6 @@
     "commit": "cz"
   },
   "author": "",
-  "license": "ISC",
   "description": "",
   "type": "module",
   "dependencies": {
