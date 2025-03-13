@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { Routes } from "./routes.ts";
-import { Logger } from "./infra/logger.ts";
+import {Routes} from "./routes.ts";
+import {Logger} from "./infra/logger.ts";
 
 dotenv.config();
 

@@ -4,7 +4,7 @@ import chalk from 'chalk';
 
 export class Logger {
     private readonly className: string;
-    private chalk;
+    private chalk: typeof chalk | undefined
 
     constructor(className: string) {
         this.className = className;

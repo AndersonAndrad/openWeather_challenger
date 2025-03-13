@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --inspect --trace-warnings",
-    "build": "tsc",
+    "build": "tsc && node ./scripts/fix-extensions.js",
     "start": "node dist/server.js",
     "test": "jest src --passWithNoTests --runInBand --detectOpenHandles --forceExit",
     "test:coverage": "jest --coverage",

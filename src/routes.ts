@@ -3,7 +3,7 @@ import {Logger} from "./infra/logger.ts";
 import cors from 'cors';
 import {NextHandleFunction} from "connect";
 import {WeatherService} from "./app/weather/weather.service.ts";
-import {swaggerDocs, swaggerUi} from "./infra/swagger/swagger.config.js";
+import {swaggerDocs, swaggerUi} from "./infra/swagger/swagger.config.ts";
 
 export class Routes {
     private readonly router: Router;
@@ -58,7 +58,7 @@ export class Routes {
 
                 res.status(200).json(cityWeather);
             } catch (error) {
-                res.status(404).json({error: error?.message || 'City not found'});
+                res.status(404).json({error: (error as Error).message || 'City not found'});
             }
         });
     }

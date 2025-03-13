@@ -1,8 +1,9 @@
-import {Server} from "../server.ts";
-import request from "supertest";
-import express from "express";
+import {Server as HttpServer} from 'http';
+import {Server} from '../server.ts';
+import request from 'supertest';
+import express from 'express';
 
-jest.mock("../infra/logger.ts", () => {
+jest.mock('../infra/logger.ts', () => {
     return {
         Logger: jest.fn().mockImplementation(() => ({
             info: jest.fn(),
@@ -11,7 +12,7 @@ jest.mock("../infra/logger.ts", () => {
     };
 });
 
-jest.mock("../routes.ts", () => {
+jest.mock('../routes.ts', () => {
     return {
         Routes: jest.fn().mockImplementation(() => ({
             initializeRoutes: jest.fn(),
@@ -23,7 +24,6 @@ jest.mock("../routes.ts", () => {
 describe(Server.name, () => {
     let server: Server;
     let app: express.Application;
-    let serverInstance;
 
     beforeAll(() => {
         server = new Server();
@@ -41,9 +41,10 @@ describe(Server.name, () => {
 
     it('should initialize the server and call listen', () => {
         const listenSpy = jest.spyOn(app, 'listen').mockImplementation((port, callback) => {
-            serverInstance = {close: jest.fn(callback)}; // Assign mock server instance
-            callback();
-            return serverInstance;
+            callback?.();
+            return {
+                close: jest.fn(),
+            } as unknown as HttpServer;
         });
 
         server.initializeServer();
@@ -60,9 +61,10 @@ describe(Server.name, () => {
         delete process.env.APP_PORT;
 
         const listenSpy = jest.spyOn(app, 'listen').mockImplementation((port, callback) => {
-            serverInstance = {close: jest.fn(callback)}; // Assign mock server instance
-            callback();
-            return serverInstance;
+            callback?.();
+            return {
+                close: jest.fn(),
+            } as unknown as HttpServer;
         });
 
         server.initializeServer();
@@ -73,9 +75,10 @@ describe(Server.name, () => {
     it('should initialize the server with custom port', () => {
         process.env.APP_PORT = '5000';
         const listenSpy = jest.spyOn(app, 'listen').mockImplementation((port, callback) => {
-            serverInstance = {close: jest.fn(callback)};
-            callback();
-            return serverInstance;
+            callback?.();
+            return {
+                close: jest.fn(),
+            } as unknown as HttpServer;
         });
 
         server.initializeServer();

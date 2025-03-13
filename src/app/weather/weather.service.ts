@@ -39,7 +39,7 @@ export class WeatherService {
             return response.data;
         } catch (error) {
             const errorMessage: string = `Not exists city with name: ${cityName}`;
-            this.logger.error(`${error.message} - ${errorMessage}`);
+            this.logger.error(`${(error as Error).message} - ${errorMessage}`);
             throw new Error(errorMessage);
         }
     }

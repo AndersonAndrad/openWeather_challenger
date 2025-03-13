@@ -3,7 +3,21 @@
     "outDir": "./dist",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "strict": true,
+    "declaration": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
