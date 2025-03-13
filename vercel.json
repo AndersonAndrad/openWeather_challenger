@@ -1,9 +1,4 @@
 {
-  "routes": [
-    {
-      "src": "/.*",
-      "dest": "src/server.ts"
-    }
-  ],
+  "buildCommand": "yarn build",
   "outputDirectory": "dist"
 }
