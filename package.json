@@ -1,5 +1,5 @@
 {
-  "name": "openweather_challenger",
+  "name": "open_weather_challenger",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
