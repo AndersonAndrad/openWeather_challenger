@@ -3,5 +3,4 @@
 .env
 coverage
 docker-compose.yml
-dist
 .vercel
