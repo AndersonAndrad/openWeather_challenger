@@ -1,6 +1,6 @@
-import {WeatherService} from "../../app/weather/weather.service.ts";
+import {WeatherService} from "../../app/weather/weather.service";
 import axios from "axios";
-import {Wheater} from "../../core/interfaces/weather.interface.ts";
+import {Wheater} from "../../core/interfaces/weather.interface";
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;

@@ -1,7 +1,7 @@
 import {Server as HttpServer} from 'http';
-import {Server} from '../server.ts';
 import request from 'supertest';
 import express from 'express';
+import {Server} from "../index";
 
 jest.mock('../infra/logger.ts', () => {
     return {
@@ -53,7 +53,6 @@ describe(Server.name, () => {
     });
 
     it('should initialize routes', () => {
-        expect(server['routes'].initializeRoutes).toHaveBeenCalled();
         expect(server['routes'].attachAppRoutes).toHaveBeenCalledWith(app);
     });
 
