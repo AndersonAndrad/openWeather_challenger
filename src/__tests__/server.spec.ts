@@ -3,15 +3,6 @@ import request from 'supertest';
 import express from 'express';
 import {Server} from "../index";
 
-jest.mock('../infra/logger.ts', () => {
-    return {
-        Logger: jest.fn().mockImplementation(() => ({
-            info: jest.fn(),
-            debug: jest.fn(),
-        })),
-    };
-});
-
 jest.mock('../routes.ts', () => {
     return {
         Routes: jest.fn().mockImplementation(() => ({

@@ -5,16 +5,6 @@ import {Wheater} from "../../core/interfaces/weather.interface";
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-jest.mock("../../infra/logger.ts", () => {
-    return {
-        Logger: jest.fn().mockImplementation(() => ({
-            info: jest.fn(),
-            debug: jest.fn(),
-            error: jest.fn(),
-        })),
-    };
-});
-
 describe(WeatherService.name, () => {
     let weatherService: WeatherService;
 
