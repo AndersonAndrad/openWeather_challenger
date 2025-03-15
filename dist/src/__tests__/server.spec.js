@@ -41,14 +41,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
 var index_1 = require("../index");
-jest.mock('../infra/logger.ts', function () {
-    return {
-        Logger: jest.fn().mockImplementation(function () { return ({
-            info: jest.fn(),
-            debug: jest.fn(),
-        }); }),
-    };
-});
 jest.mock('../routes.ts', function () {
     return {
         Routes: jest.fn().mockImplementation(function () { return ({

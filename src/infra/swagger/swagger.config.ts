@@ -16,6 +16,10 @@ const swaggerOptions = {
                 url: `http://localhost:${APP_PORT}/v1`,
                 description: "Local server",
             },
+            {
+                url: `https://open-weather-challenger.onrender.com/v1`,
+                description: "Prod server",
+            },
         ],
     },
     apis: ["src/routes.ts"],

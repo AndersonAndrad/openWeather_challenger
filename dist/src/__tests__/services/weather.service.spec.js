@@ -43,15 +43,6 @@ var weather_service_1 = require("../../app/weather/weather.service");
 var axios_1 = __importDefault(require("axios"));
 jest.mock('axios');
 var mockedAxios = axios_1.default;
-jest.mock("../../infra/logger.ts", function () {
-    return {
-        Logger: jest.fn().mockImplementation(function () { return ({
-            info: jest.fn(),
-            debug: jest.fn(),
-            error: jest.fn(),
-        }); }),
-    };
-});
 describe(weather_service_1.WeatherService.name, function () {
     var weatherService;
     beforeEach(function () { return __awaiter(void 0, void 0, void 0, function () {
